@@ -10,31 +10,22 @@ header{
     display: flex;
     margin-bottom: 20px;
     margin-top: 0;
-    margin-left: 12%;
+    margin-left: 12.5%;
     justify-content: space-between;
 }
 
 img{
-    width: 250px;
+    width: 200px;
 }
 
 main{
     display: grid; 
-    padding-left: 12%;
     grid-template-rows: 1;
     margin: auto;
 }
 
 ul{
     list-style-type: none;
-}
-
-
-
-@media (max-width: 768px) {
-  header{
-    flex-direction: column;
-  }
 }
 
 #reviews {

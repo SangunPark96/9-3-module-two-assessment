@@ -1,5 +1,7 @@
-const url = "https://resource-ghibli-api.onrender.com/films"
-const URL = "https://resource-ghibli-api.onrender.com/people"
+const filmURL = "https://resource-ghibli-api.onrender.com/films"
+const peopleURL = "https://resource-ghibli-api.onrender.com/people"
+
+
 const select = document.querySelector('select')
 const ul = document.querySelector('ul')
 const display = document.querySelector('#display-info')
@@ -13,10 +15,10 @@ const ol = document.querySelector('ol')
 // To ensure Cypress tests work as expeded, add any code/functions that you would like to run on page load inside this function
 
 function run() {
-    fetch(url)
-    .then((res) => res.json())
-    .then((data) => {
-       data.forEach((movie) =>{
+    fetch(filmURL)
+    .then((data) => data.json())
+    .then((result) => {
+       result.forEach((movie) =>{
            let option = document.createElement('option')
            option.value = movie.title
            option.innerHTML = movie.title
@@ -24,11 +26,12 @@ function run() {
    
            select.addEventListener('change', (event) =>{
                if(event.target.value === option.value){
-                   display.innerHTML =''
+     
                    const title = document.createElement('h3')
                    const date = document.createElement('p')
                    const description = document.createElement('p')
    
+                   display.innerHTML =''
                    title.textContent = `${movie.title}`
                    date.textContent = `${movie.release_date}`
                    description.textContent = `${movie.description}`
@@ -59,14 +62,14 @@ function run() {
 }
 
 function getPeople(){
-    fetch(URL)
+    fetch(peopleURL)
      .then(response => response.json())
      .then(peopleData => {
     
-        for(i = 0; peopleData.length; i++){
-            const people = document.createElement('li')
-            people.innerHTML = peopleData[i].name
-            ol.append(people)
+        for(let i = 0; i < peopleData.length; i++){
+            const character = document.createElement('li')
+            character.innerHTML = peopleData[i].name
+            ol.append(character)
         }   
      })
     
